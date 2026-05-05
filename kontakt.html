@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kontakt & Nabídka – Gabotherm®</title>
+<meta name="description" content="Kontaktujte Gabotherm® a získejte nezávaznou nabídku na podlahové, stěnové nebo stropní vytápění.">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.contact-hero {
+  padding: 140px 80px 60px;
+  background: var(--dark);
+  position: relative; overflow: hidden;
+}
+.contact-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 70% 50%, rgba(229,72,77,.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+.contact-hero h1 { color: #fff; margin-bottom: 14px; position: relative; }
+.contact-hero h1 em { font-style: normal; color: var(--red); }
+.contact-hero p { color: rgba(255,255,255,.5); font-size: 18px; max-width: 500px; position: relative; }
+
+.contact-body {
+  padding: 80px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 64px; align-items: start;
+}
+
+/* ── FORMULÁŘ ── */
+.form-card {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 24px; padding: 44px;
+}
+.form-card h2 { font-size: 26px; margin-bottom: 8px; }
+.form-card h2 em { font-style: normal; color: var(--red); }
+.form-card > p { font-size: 14px; color: var(--gray); margin-bottom: 32px; }
+
+.form-group { margin-bottom: 20px; }
+.form-group label {
+  display: block; font-size: 13px; font-weight: bold;
+  color: var(--dark); margin-bottom: 7px;
+}
+.form-group label span { color: var(--red); }
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 15px; color: var(--dark);
+  border: 1.5px solid rgba(0,0,0,0.12);
+  border-radius: 10px; padding: 12px 16px;
+  background: #fafafa;
+  transition: border-color .2s, box-shadow .2s;
+  outline: none;
+  appearance: none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px rgba(229,72,77,.1);
+  background: #fff;
+}
+.form-group textarea { resize: vertical; min-height: 110px; }
+.form-group select { cursor: pointer; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.gdpr-check {
+  display: flex; align-items: flex-start; gap: 10px;
+  margin-bottom: 24px;
+}
+.gdpr-check input[type="checkbox"] {
+  width: 18px; height: 18px; flex-shrink: 0;
+  margin-top: 2px; cursor: pointer;
+  accent-color: var(--red);
+}
+.gdpr-check label {
+  font-size: 13px; color: var(--gray); line-height: 1.5; cursor: pointer;
+}
+.gdpr-check a { color: var(--red); }
+
+.form-submit {
+  width: 100%;
+  background: var(--red); color: #fff;
+  border: none; border-radius: 100px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px; font-weight: bold;
+  padding: 17px; cursor: pointer;
+  transition: background .2s, transform .15s, box-shadow .2s;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.form-submit:hover {
+  background: #c73035; transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(229,72,77,.3);
+}
+.form-submit:disabled {
+  background: var(--gray); transform: none;
+  box-shadow: none; cursor: not-allowed;
+}
+
+/* Stavy formuláře */
+.form-success {
+  display: none; text-align: center; padding: 40px 20px;
+}
+.form-success .success-icon {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: var(--red-soft); color: var(--red);
+  font-size: 28px; margin: 0 auto 20px;
+  display: flex; align-items: center; justify-content: center;
+}
+.form-success h3 { font-size: 22px; margin-bottom: 10px; }
+.form-success p { color: var(--gray); }
+
+.form-error-msg {
+  display: none;
+  background: #fff5f5; border: 1px solid rgba(229,72,77,.3);
+  color: var(--red); border-radius: 10px;
+  padding: 12px 16px; font-size: 14px; margin-top: 14px;
+}
+
+/* ── PRAVÁ STRANA ── */
+.contact-info h2 { font-size: 28px; margin-bottom: 16px; }
+.contact-info h2 em { font-style: normal; color: var(--red); }
+.contact-info > p { font-size: 16px; margin-bottom: 36px; }
+
+.info-cards { display: flex; flex-direction: column; gap: 14px; margin-bottom: 40px; }
+.info-card {
+  background: #fff; border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 16px; padding: 20px 22px;
+  display: flex; align-items: center; gap: 16px;
+  transition: box-shadow .2s;
+}
+.info-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.07); }
+.info-card-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--red-soft);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+.info-card-label { font-size: 12px; color: var(--gray); margin-bottom: 3px; }
+.info-card-val { font-size: 15px; font-weight: bold; color: var(--dark); }
+.info-card a { color: var(--dark); }
+.info-card a:hover { color: var(--red); }
+
+.gabo-contact {
+  background: linear-gradient(135deg, #fff8f8, #f5f7ff);
+  border-radius: 20px; padding: 28px;
+  display: flex; align-items: center; gap: 20px;
+}
+.gabo-contact img { width: 90px; flex-shrink: 0; }
+.gabo-contact-text strong {
+  display: block; font-size: 16px; margin-bottom: 6px;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.gabo-contact-text p { font-size: 14px; color: var(--gray); }
+
+.breadcrumb {
+  padding: 12px 80px;
+  font-size: 13px; color: var(--gray);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  background: #fff;
+}
+.breadcrumb a { color: var(--gray); transition: color .2s; }
+.breadcrumb a:hover { color: var(--red); }
+.breadcrumb span { margin: 0 8px; }
+
+@media (max-width: 900px) {
+  .contact-hero { padding: 110px 28px 48px; }
+  .contact-body { grid-template-columns: 1fr; padding: 48px 28px; gap: 48px; }
+  .form-row { grid-template-columns: 1fr; }
+  .breadcrumb { padding: 12px 28px; }
+  .form-card { padding: 28px 22px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="navbar-logo">
+    <img src="assets/Gabotherm_logo_napis.svg" alt="Gabotherm">
+  </a>
+  <ul class="navbar-links">
+    <li><a href="systemy/podlahove-vytapeni.html">Podlahové vytápění</a></li>
+    <li><a href="systemy/stenove-vytapeni.html">Stěnové vytápění</a></li>
+    <li><a href="systemy/stropni-vytapeni.html">Stropní vytápění</a></li>
+    <li><a href="kontakt.html" class="active">Kontakt</a></li>
+  </ul>
+  <button class="navbar-cta" onclick="document.getElementById('form-top').scrollIntoView({behavior:'smooth'})">Získat nabídku</button>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">Úvod</a>
+  <span>›</span>
+  Kontakt & Nabídka
+</div>
+
+<section class="contact-hero">
+  <span class="section-label" style="position:relative">Kontakt</span>
+  <h1>Získejte <em>nezávaznou nabídku.</em></h1>
+  <p>Vyplňte formulář a ozveme se vám do 24 hodin. GABO vám pomůže vybrat správný systém.</p>
+</section>
+
+<section class="contact-body" id="form-top">
+
+  <!-- FORMULÁŘ -->
+  <div class="form-card reveal">
+    <h2>Napište <em>nám</em></h2>
+    <p>Všechna pole označená * jsou povinná.</p>
+
+    <!-- Potvrzení po odeslání -->
+    <div data-fs-success class="form-success" style="display:none">
+      <div class="success-icon">✓</div>
+      <h3>Poptávka odeslána!</h3>
+      <p>Děkujeme. Ozveme se vám do 24 hodin.<br>GABO se těší na spolupráci.</p>
+    </div>
+
+    <!-- Obecná chyba -->
+    <div data-fs-error class="form-error-msg" style="display:none">
+      Nepodařilo se odeslat formulář. Zkuste to prosím znovu nebo nás kontaktujte přímo na <strong>info@gabotherm.cz</strong>
+    </div>
+
+    <form id="lead-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Jméno <span>*</span></label>
+          <input type="text" name="jmeno" placeholder="Jan" required data-fs-field>
+          <span data-fs-error="jmeno" style="color:var(--red);font-size:12px"></span>
+        </div>
+        <div class="form-group">
+          <label>Příjmení <span>*</span></label>
+          <input type="text" name="prijmeni" placeholder="Novák" required data-fs-field>
+          <span data-fs-error="prijmeni" style="color:var(--red);font-size:12px"></span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>E-mail <span>*</span></label>
+        <input type="email" name="email" placeholder="jan.novak@email.cz" required data-fs-field>
+        <span data-fs-error="email" style="color:var(--red);font-size:12px"></span>
+      </div>
+
+      <div class="form-group">
+        <label>Telefon</label>
+        <input type="tel" name="telefon" placeholder="+420 777 000 000" data-fs-field>
+      </div>
+
+      <div class="form-group">
+        <label>Typ projektu <span>*</span></label>
+        <select name="typ_projektu" required data-fs-field>
+          <option value="" disabled selected>Vyberte typ projektu...</option>
+          <option value="Novostavba – rodinný dům">Novostavba – rodinný dům</option>
+          <option value="Novostavba – bytový dům / apartment">Novostavba – bytový dům / apartment</option>
+          <option value="Rekonstrukce">Rekonstrukce</option>
+          <option value="Komerční objekt">Komerční objekt</option>
+          <option value="Průmyslový objekt">Průmyslový objekt</option>
+          <option value="Jiné">Jiné</option>
+        </select>
+        <span data-fs-error="typ_projektu" style="color:var(--red);font-size:12px"></span>
+      </div>
+
+      <div class="form-group">
+        <label>Systém</label>
+        <select name="system" data-fs-field>
+          <option value="" disabled selected>O který systém máte zájem?</option>
+          <option value="Podlahové vytápění">Podlahové vytápění</option>
+          <option value="Stěnové vytápění & chlazení">Stěnové vytápění & chlazení</option>
+          <option value="Stropní vytápění & chlazení">Stropní vytápění & chlazení</option>
+          <option value="Nevím, potřebuji poradit">Nevím, potřebuji poradit</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Zpráva</label>
+        <textarea name="zprava" placeholder="Popište váš projekt — plocha, lokalita, termín realizace..." data-fs-field></textarea>
+      </div>
+
+      <div class="gdpr-check">
+        <input type="checkbox" id="f-gdpr" required>
+        <label for="f-gdpr">
+          Souhlasím se <a href="#">zpracováním osobních údajů</a> za účelem zpracování poptávky. Váš email ani telefon nikdy neposkytneme třetím stranám.
+        </label>
+      </div>
+
+      <button type="submit" class="form-submit" data-fs-submit-btn>
+        <span>Odeslat poptávku →</span>
+      </button>
+    </form>
+  </div>
+
+  <!-- KONTAKTNÍ INFO -->
+  <div class="contact-info reveal d1">
+    <span class="section-label">Jsme tu pro vás</span>
+    <h2>Kontaktní <em>informace</em></h2>
+    <p>Napište nám — rádi odpovíme na všechny otázky.</p>
+
+    <div class="info-cards">
+      <div class="info-card">
+        <div class="info-card-icon">📧</div>
+        <div>
+          <div class="info-card-label">E-mail</div>
+          <div class="info-card-val"><a href="mailto:info@gabotherm.cz">info@gabotherm.cz</a></div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🕐</div>
+        <div>
+          <div class="info-card-label">Odpovídáme</div>
+          <div class="info-card-val">Do 24 hodin</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gabo-contact">
+      <img src="assets/GABO.png" alt="GABO" onerror="this.style.display='none'">
+      <div class="gabo-contact-text">
+        <strong>Jsem tu pro vás!</strong>
+        <p>Nevíte který systém zvolit? Popište mi váš projekt a společně najdeme to nejlepší řešení.</p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<footer class="footer">
+  <div>
+    <a href="index.html" class="footer-logo"><img src="assets/Gabotherm_logo_napis.svg" alt="Gabotherm"></a>
+    <p class="footer-desc">Sálavé systémy vytápění a chlazení nejvyšší kvality. Na českém trhu od roku 1995.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Systémy</h4>
+    <ul>
+      <li><a href="systemy/podlahove-vytapeni.html">Podlahové vytápění</a></li>
+      <li><a href="systemy/stenove-vytapeni.html">Stěnové vytápění</a></li>
+      <li><a href="systemy/stropni-vytapeni.html">Stropní vytápění</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Firma</h4>
+    <ul>
+      <li><a href="https://www.gabotherm.cz/" target="_blank">O nás</a></li>
+      <li><a href="https://www.gabotherm.cz/kategoria/reference/" target="_blank">Reference</a></li>
+      <li><a href="https://www.gabotherm.cz/dokumenty-ke-stazeni/" target="_blank">Ke stažení</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Kontakt</h4>
+    <ul>
+      <li><a href="mailto:info@gabotherm.cz">info@gabotherm.cz</a></li>
+      <li><a href="kontakt.html">Kontaktní formulář</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>© 2024 Gabotherm® s.r.o. Všechna práva vyhrazena.</span>
+  <span>Teplo. Chlad. Pohoda.</span>
+</div>
+
+<script>
+/* ── SCROLL REVEAL ── */
+const obs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); }), {threshold:.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+/* ── FORMSPREE INIT ── */
+window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+formspree('initForm', { formElement: '#lead-form', formId: 'mjgjqdkz' });
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+</body>
+</html>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gabotherm® – Na tohle vytápění klidně zapomeňte.</title>
+<meta name="description" content="Sálavé systémy vytápění a chlazení Gabotherm®. Podlahové, stěnové a stropní vytápění. Na českém trhu přes 25 let.">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 68px;
+  overflow: hidden;
+}
+.hero-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 80px 56px 80px 80px;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--red-soft); color: var(--red);
+  font-size: 12px; font-weight: bold;
+  padding: 6px 14px; border-radius: 100px;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  margin-bottom: 28px; width: fit-content;
+}
+.hero-badge-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--red); flex-shrink: 0;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+.hero-left h1 { margin-bottom: 22px; }
+.hero-left h1 em { font-style: normal; color: var(--red); }
+.hero-left > p { max-width: 440px; margin-bottom: 40px; font-size: 18px; font-weight: normal; }
+
+.hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 56px; }
+
+.hero-stats {
+  display: flex; gap: 40px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+.stat-val {
+  font-size: 28px; font-weight: bold;
+  color: var(--red); line-height: 1;
+}
+.stat-lbl { font-size: 13px; color: var(--gray); margin-top: 4px; }
+
+/* Hero pravá strana */
+.hero-right {
+  position: relative; overflow: hidden;
+  background: linear-gradient(135deg, #fff5f5 0%, #eff3ff 100%);
+  display: flex; align-items: flex-end; justify-content: center;
+}
+.hero-waves {
+  position: absolute; bottom: 40px; left: 0; right: 0;
+  opacity: .28; pointer-events: none;
+}
+.hero-bubble {
+  position: absolute; top: 16%; right: 5%;
+  background: #fff; border-radius: 18px 18px 4px 18px;
+  padding: 14px 18px; max-width: 185px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  animation: float 5s ease-in-out infinite .5s;
+  z-index: 3;
+}
+.hero-bubble p { font-size: 13px; font-weight: bold; line-height: 1.45; color: var(--dark); }
+.hero-bubble span { color: var(--red); }
+
+.float-card {
+  position: absolute; z-index: 3;
+  background: #fff; border-radius: 14px;
+  padding: 11px 15px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.09);
+  display: flex; align-items: center; gap: 10px;
+}
+.float-card-icon { font-size: 18px; }
+.float-card-val { font-size: 13px; font-weight: bold; }
+.float-card-lbl { font-size: 11px; color: var(--gray); }
+.fc-temp { top: 40%; left: 5%; animation: float 6s ease-in-out infinite 1s; }
+.fc-save { top: 57%; right: 4%; animation: float 7s ease-in-out infinite 2s; }
+
+.hero-mascot {
+  position: relative; z-index: 2;
+  width: 100%; max-width: 480px; padding: 0 20px;
+}
+.hero-mascot img {
+  width: 100%;
+  filter: drop-shadow(0 24px 56px rgba(229,72,77,.16));
+  animation: float 5.5s ease-in-out infinite;
+}
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+
+/* ── SYSTÉMY ── */
+.section-systems {
+  background: var(--dark);
+  padding: 110px 80px;
+  overflow: hidden; position: relative;
+}
+.section-systems h2 { color: #fff; margin-bottom: 52px; }
+.section-systems h2 em { font-style: normal; color: var(--red); }
+
+.systems-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border: 1px solid rgba(255,255,255,0.07);
+}
+.sys-card {
+  padding: 40px 34px; position: relative; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.07);
+  transition: background .3s;
+  text-decoration: none; display: block;
+}
+.sys-card:hover { background: rgba(255,255,255,0.05); }
+.sys-card::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--red), var(--blue));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .35s ease;
+}
+.sys-card:hover::after { transform: scaleX(1); }
+.sys-num {
+  font-size: 76px; font-weight: bold;
+  color: rgba(255,255,255,.04);
+  position: absolute; top: 10px; right: 18px; line-height: 1;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.sys-icon {
+  width: 50px; height: 50px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; margin-bottom: 20px;
+}
+.sys-icon.warm { background: rgba(229,72,77,.14); }
+.sys-icon.both { background: linear-gradient(135deg,rgba(229,72,77,.14),rgba(9,66,219,.14)); }
+.sys-icon.cool { background: rgba(9,66,219,.14); }
+.sys-card h3 { color: #fff; margin-bottom: 11px; font-size: 20px; }
+.sys-card p { color: rgba(255,255,255,.5); font-size: 14px; line-height: 1.7; }
+.sys-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--red); font-size: 13px; font-weight: bold;
+  margin-top: 20px; transition: gap .2s;
+}
+.sys-card:hover .sys-link { gap: 10px; }
+
+/* ── VÝHODY ── */
+.section-features {
+  padding: 110px 80px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 90px; align-items: center;
+}
+.section-features h2 { margin-bottom: 16px; }
+.section-features h2 em { font-style: normal; color: var(--red); }
+.features-intro { font-size: 17px; margin-bottom: 36px; font-weight: normal; }
+
+.features-list { list-style: none; display: flex; flex-direction: column; gap: 13px; }
+.feature-item {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 17px 19px; border-radius: 14px;
+  background: #fff; border: 1px solid rgba(0,0,0,0.07);
+  transition: border-color .2s, box-shadow .2s;
+}
+.feature-item:hover {
+  border-color: rgba(229,72,77,.2);
+  box-shadow: 0 8px 24px rgba(229,72,77,.07);
+}
+.feature-icon {
+  width: 38px; height: 38px; flex-shrink: 0;
+  border-radius: 10px; background: var(--red-soft);
+  display: flex; align-items: center; justify-content: center; font-size: 17px;
+}
+.feature-title { font-size: 15px; font-weight: bold; color: var(--dark); margin-bottom: 3px; }
+.feature-desc { font-size: 13px; color: var(--gray); line-height: 1.5; }
+
+.feat-cards {
+  display: grid; grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto; gap: 14px;
+}
+.feat-card {
+  border-radius: 20px; padding: 28px;
+  position: relative; overflow: hidden;
+  min-height: 190px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+.feat-card.red { background: var(--red); grid-row: 1 / span 2; }
+.feat-card.white { background: #fff; border: 1px solid rgba(0,0,0,0.08); }
+.feat-card.blue { background: var(--blue); }
+.feat-card-num {
+  font-size: 68px; font-weight: bold; opacity: .12;
+  position: absolute; top: 10px; right: 14px;
+  line-height: 1; color: #fff;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.feat-card.white .feat-card-num { color: var(--red); }
+.feat-card-lbl {
+  font-size: 17px; font-weight: bold; line-height: 1.3;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.feat-card.red .feat-card-lbl,
+.feat-card.blue .feat-card-lbl { color: #fff; }
+.feat-card.white .feat-card-lbl { color: var(--dark); }
+
+/* ── GABO SEKCE ── */
+.section-gabo {
+  padding: 100px 80px;
+  background: linear-gradient(135deg, #fff8f8 0%, #f5f7ff 100%);
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 64px; align-items: center;
+}
+.gabo-img {
+  width: 100%; max-width: 380px; margin: 0 auto;
+  filter: drop-shadow(0 28px 64px rgba(229,72,77,.18));
+  animation: float 6s ease-in-out infinite;
+}
+.section-gabo h2 { margin-bottom: 18px; }
+.section-gabo h2 em { font-style: normal; color: var(--red); }
+.section-gabo p { margin-bottom: 16px; font-size: 17px; font-weight: normal; }
+.gabo-promise {
+  background: var(--red); color: #fff;
+  border-radius: 18px; padding: 24px 26px; margin-top: 26px;
+}
+.gabo-promise strong {
+  font-size: 18px; font-weight: bold; display: block; margin-bottom: 7px;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.gabo-promise p { font-size: 14px; opacity: .88; margin: 0; color: #fff; }
+.gabo-cta { margin-top: 26px; }
+
+/* ── CTA ── */
+.section-cta {
+  background: var(--dark);
+  padding: 100px 80px;
+  text-align: center; position: relative; overflow: hidden;
+}
+.section-cta::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, rgba(229,72,77,.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+.section-cta h2 { color: #fff; margin-bottom: 14px; }
+.section-cta h2 em { font-style: normal; color: var(--red); }
+.cta-sub {
+  font-size: 17px; color: rgba(255,255,255,.5);
+  max-width: 460px; margin: 0 auto 44px; font-weight: normal;
+}
+.cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-left { padding: 96px 28px 44px; }
+  .hero-right { min-height: 360px; }
+  .section-systems { padding: 80px 28px; }
+  .systems-grid { grid-template-columns: 1fr; }
+  .section-features { grid-template-columns: 1fr; padding: 80px 28px; gap: 56px; }
+  .section-gabo { grid-template-columns: 1fr; padding: 80px 28px; text-align: center; }
+  .section-cta { padding: 80px 28px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="index.html" class="navbar-logo">
+    <img src="assets/Gabotherm_logo_napis.svg" alt="Gabotherm">
+  </a>
+  <ul class="navbar-links">
+    <li><a href="systemy/podlahove-vytapeni.html">Podlahové vytápění</a></li>
+    <li><a href="systemy/stenove-vytapeni.html">Stěnové vytápění</a></li>
+    <li><a href="systemy/stropni-vytapeni.html">Stropní vytápění</a></li>
+    <li><a href="kontakt.html">Kontakt</a></li>
+  </ul>
+  <button class="navbar-cta" onclick="location.href='kontakt.html'">Získat nabídku</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      25 let na trhu · Česká republika
+    </div>
+    <h1>Na tohle vytápění<br><em>klidně zapomeňte.</em></h1>
+    <p>Sálavé systémy Gabotherm® fungují tiše, skrytě a bez&nbsp;údržby — z&nbsp;podlahy, stěny i&nbsp;stropu. Přesně tam, kde byste je nečekali.</p>
+    <div class="hero-buttons">
+      <a href="systemy/podlahove-vytapeni.html" class="btn-primary">Prozkoumat systémy →</a>
+      <a href="#features" class="btn-secondary">Jak to funguje</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-val">25+</div><div class="stat-lbl">let zkušeností</div></div>
+      <div><div class="stat-val">10 000+</div><div class="stat-lbl">realizací v ČR</div></div>
+      <div><div class="stat-val">až 30 %</div><div class="stat-lbl">úspora energií</div></div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <svg class="hero-waves" viewBox="0 0 600 200" fill="none">
+      <path d="M0 150 Q75 100 150 150 Q225 200 300 150 Q375 100 450 150 Q525 200 600 150" stroke="#E5484D" stroke-width="2"/>
+      <path d="M0 125 Q75 75 150 125 Q225 175 300 125 Q375 75 450 125 Q525 175 600 125" stroke="#0942DB" stroke-width="1.5" opacity=".5"/>
+      <path d="M0 100 Q75 50 150 100 Q225 150 300 100 Q375 50 450 100 Q525 150 600 100" stroke="#E5484D" stroke-width="1" opacity=".3"/>
+      <path d="M0 170 Q75 140 150 170 Q225 195 300 170 Q375 140 450 170 Q525 195 600 170" stroke="#0942DB" stroke-width="2" opacity=".35"/>
+    </svg>
+
+    <div class="hero-bubble">
+      <p>Tady GABO! Vaše podlaha bude teplá a vy na ni <span>klidně zapomenete.</span></p>
+    </div>
+
+    <div class="float-card fc-temp">
+      <span class="float-card-icon">🌡️</span>
+      <div>
+        <div class="float-card-lbl">Teplota podlahy</div>
+        <div class="float-card-val" style="color:var(--red)">23 °C – ideální</div>
+      </div>
+    </div>
+    <div class="float-card fc-save">
+      <span class="float-card-icon">⚡</span>
+      <div>
+        <div class="float-card-lbl">Úspora energií</div>
+        <div class="float-card-val" style="color:var(--blue)">až 30 %</div>
+      </div>
+    </div>
+
+    <div class="hero-mascot">
+      <img src="assets/GABO.png" alt="GABO – maskot Gabotherm">
+    </div>
+  </div>
+</section>
+
+<!-- SYSTÉMY -->
+<section class="section-systems" id="systems">
+  <span class="section-label" style="color:var(--red)">Naše řešení</span>
+  <h2 class="reveal">Teplo <em>tam,</em> kde ho čekáte nejméně.</h2>
+  <div class="systems-grid">
+
+    <a href="systemy/podlahove-vytapeni.html" class="sys-card reveal">
+      <div class="sys-num">01</div>
+      <div class="sys-icon warm">🔥</div>
+      <h3>Podlahové vytápění</h3>
+      <p>Nejrozšířenější sálavý systém v ČR. Skrytý pod podlahou, tichý a efektivní. Vhodný pro novostavby i rekonstrukce.</p>
+      <span class="sys-link">Více o systému →</span>
+    </a>
+
+    <a href="systemy/stenove-vytapeni.html" class="sys-card reveal d1">
+      <div class="sys-num">02</div>
+      <div class="sys-icon both">🌊</div>
+      <h3>Stěnové vytápění & chlazení</h3>
+      <p>Teplotně homogenní pole, ideální vertikální rozložení tepla. Maximální komfort po celý rok — v zimě hřeje, v létě chladí.</p>
+      <span class="sys-link">Více o systému →</span>
+    </a>
+
+    <a href="systemy/stropni-vytapeni.html" class="sys-card reveal d2">
+      <div class="sys-num">03</div>
+      <div class="sys-icon cool">❄️</div>
+      <h3>Stropní vytápění & chlazení</h3>
+      <p>Optimální pohoda v zimě i létě. Přirozené chlazení sáláním bez hlučné klimatizace. Ideální pro novostavby a rozsáhlé rekonstrukce.</p>
+      <span class="sys-link">Více o systému →</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- VÝHODY -->
+<section class="section-features" id="features">
+  <div>
+    <span class="section-label reveal">Proč Gabotherm?</span>
+    <h2 class="reveal">Výhody, které <em>pocítíte.</em></h2>
+    <p class="features-intro reveal">Teplo ze stěn a podlahy se rovnoměrně rozkládá v prostoru. Vy to cítíte — ale systém nevidíte, neslyšíte a neřešíte.</p>
+    <ul class="features-list">
+      <li class="feature-item reveal">
+        <div class="feature-icon">🤫</div>
+        <div><div class="feature-title">Žádný hluk, žádný prach</div><div class="feature-desc">Sálavé teplo minimalizuje proudění vzduchu — ideální pro alergiky a děti.</div></div>
+      </li>
+      <li class="feature-item reveal d1">
+        <div class="feature-icon">💰</div>
+        <div><div class="feature-title">Nižší účty za energie</div><div class="feature-desc">Při nižší teplotě vzduchu se cítíte stejně pohodlně. Ušetříte až 30 %.</div></div>
+      </li>
+      <li class="feature-item reveal d2">
+        <div class="feature-icon">🎨</div>
+        <div><div class="feature-title">Skrytý design</div><div class="feature-desc">Žádné radiátory, žádné překážky. Volnost pro interiér podle vašeho vkusu.</div></div>
+      </li>
+      <li class="feature-item reveal d3">
+        <div class="feature-icon">♾️</div>
+        <div><div class="feature-title">Životnost srovnatelná se stavbou</div><div class="feature-desc">Polybutenové trubky Gabotherm® jsou navrženy na celou životnost budovy.</div></div>
+      </li>
+    </ul>
+  </div>
+  <div class="feat-cards reveal">
+    <div class="feat-card red">
+      <div class="feat-card-num">25</div>
+      <div class="feat-card-lbl">Více než 25 let<br>na českém trhu</div>
+    </div>
+    <div class="feat-card white">
+      <div class="feat-card-num">30</div>
+      <div class="feat-card-lbl">Úspora<br>až 30 %</div>
+    </div>
+    <div class="feat-card blue">
+      <div class="feat-card-num">3</div>
+      <div class="feat-card-lbl">Podlaha,<br>stěna, strop</div>
+    </div>
+  </div>
+</section>
+
+<!-- GABO -->
+<section class="section-gabo" id="gabo">
+  <div style="display:flex;justify-content:center">
+    <img class="gabo-img" src="assets/GABO.png" alt="GABO – maskot Gabotherm">
+  </div>
+  <div>
+    <span class="section-label reveal">Váš průvodce</span>
+    <h2 class="reveal">Ahoj! Jsem <em>GABO.</em></h2>
+    <p class="reveal">Jsem tady, abych vám pomohl vybrat správný systém Gabotherm® — přesně ten, který vaší domácnosti nebo projektu bude nejlépe vyhovovat.</p>
+    <p class="reveal">Poradím vám s výběrem, odpovím na otázky a provedu vás celým procesem od konzultace až po spuštění.</p>
+    <div class="gabo-promise reveal">
+      <strong>Slíbím vám jedno</strong>
+      <p>Systém Gabotherm® po montáži prostě zapomenete. A to je přesně ten cíl — aby fungoval perfektně bez vaší pozornosti.</p>
+    </div>
+    <div class="gabo-cta reveal">
+      <a href="kontakt.html" class="btn-primary">Zeptat se GABA →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-cta" id="contact">
+  <div style="position:relative;z-index:2">
+    <span class="section-label" style="display:block;text-align:center">Začínáme</span>
+    <h2 class="reveal">Připraveni na tepelný<br><em>komfort bez kompromisů?</em></h2>
+    <p class="cta-sub reveal">Kontaktujte nás a GABO vám pomůže vybrat správný systém pro váš projekt.</p>
+    <div class="cta-buttons reveal">
+      <a href="kontakt.html" class="btn-primary">Získat nabídku →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div>
+    <a href="index.html" class="footer-logo"><img src="assets/Gabotherm_logo_napis.svg" alt="Gabotherm"></a>
+    <p class="footer-desc">Sálavé systémy vytápění a chlazení nejvyšší kvality. Na českém trhu od roku 1995.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Systémy</h4>
+    <ul>
+      <li><a href="systemy/podlahove-vytapeni.html">Podlahové vytápění</a></li>
+      <li><a href="systemy/stenove-vytapeni.html">Stěnové vytápění</a></li>
+      <li><a href="systemy/stropni-vytapeni.html">Stropní vytápění</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Firma</h4>
+    <ul>
+      <li><a href="https://www.gabotherm.cz/" target="_blank">O nás</a></li>
+      <li><a href="https://www.gabotherm.cz/kategoria/reference/" target="_blank">Reference</a></li>
+      <li><a href="https://www.gabotherm.cz/dokumenty-ke-stazeni/" target="_blank">Ke stažení</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Kontakt</h4>
+    <ul>
+      <li><a href="mailto:info@gabotherm.cz">info@gabotherm.cz</a></li>
+      <li><a href="kontakt.html">Kontaktní formulář</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>© 2024 Gabotherm® s.r.o. Všechna práva vyhrazena.</span>
+  <span>Teplo. Chlad. Pohoda.</span>
+</div>
+
+<script>
+const obs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); }), {threshold:.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
